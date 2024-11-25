@@ -33,6 +33,7 @@ class GrafanaWrapper(FirefoxMarionetteBase):
         Navigate to Grafana application and inject Grafana Sidecar service.
         """
         log.info("Starting Grafana at {}".format(self.baseurl))
+        self.set_window_size(1920,1080)
 
         self.navigate(self.baseurl)
 
