@@ -137,38 +137,26 @@ class GrafanaStudioSrv {
     var $location = this.$location;
     var _this = this;
     var promise = new Promise(function (resolve, reject) {
-      // Wait for dashboard being loaded.
-      $rootScope.$apply(function ($rootScope) {
-        log("loadDashboard: Installing event handlers");
+      // Compute dashboard url.
+      var view = "d";
+      var slug = "foo";
+      var query = "";
+      if (_this.options["dashboard-view"]) {
+        view = _this.options["dashboard-view"];
+      }
+      if (_this.options["panel-id"]) {
+        query = "?panelId=" + _this.options["panel-id"] + "&fullscreen";
+      }
+      var url = "/" + view + "/" + uid + "/" + slug + query;
 
-        _this.waitForDashboard(uid, resolve, reject);
-
-        $rootScope.$on("all-data-received", function (event, result) {
-          //log("Received 'all-data-received' event", event, result);
-          _this.hasAllData(true);
-        });
-
-        // Compute dashboard url.
-        var view = "d";
-        var slug = "foo";
-        var query = "";
-        if (_this.options["dashboard-view"]) {
-          view = _this.options["dashboard-view"];
-        }
-        if (_this.options["panel-id"]) {
-          query = "?panelId=" + _this.options["panel-id"] + "&fullscreen";
-        }
-        var url = "/" + view + "/" + uid + "/" + slug + query;
-
-        // Trigger the dashboard loading.
-        // https://docs.angularjs.org/api/ng/service/$location#url
-        // https://stackoverflow.com/questions/16450125/angularjs-redirect-from-outside-angular/16450748#16450748
-        // TODO: If you need to automatically navigate the user to a new place in the application this should
-        //       be done via the LocationSrv and it will make sure to update the application state accordingly.
-        //       https://grafana.com/docs/grafana/latest/packages_api/runtime/locationsrv/
-        //       https://community.grafana.com/t/how-can-i-change-template-varibale-in-a-react-plugin-in-grafana-7-0/31345/2
-        $location.url(url);
-      });
+      // Trigger the dashboard loading.
+      // https://docs.angularjs.org/api/ng/service/$location#url
+      // https://stackoverflow.com/questions/16450125/angularjs-redirect-from-outside-angular/16450748#16450748
+      // TODO: If you need to automatically navigate the user to a new place in the application this should
+      //       be done via the LocationSrv and it will make sure to update the application state accordingly.
+      //       https://grafana.com/docs/grafana/latest/packages_api/runtime/locationsrv/
+      //       https://community.grafana.com/t/how-can-i-change-template-varibale-in-a-react-plugin-in-grafana-7-0/31345/2
+      $location.url(url);
 
       // Time out this promise after a while.
       setTimeout(reject, 10000, "Timeout while loading dashboard " + uid);
