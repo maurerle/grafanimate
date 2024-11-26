@@ -93,7 +93,7 @@ class AnimationSequence:
 
             if self.mode == SequencingMode.WINDOW:
                 start = date
-                stop = date + self.recurrence.duration
+                stop = date + self.recurrence.duration * 4
 
             elif self.mode == SequencingMode.CUMULATIVE:
                 start = timerange.start

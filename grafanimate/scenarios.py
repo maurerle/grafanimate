@@ -43,12 +43,12 @@ def playdemo():
 
     return AnimationScenario(
         grafana_url="https://play.grafana.org/",
-        dashboard_uid="000000012",
+        dashboard_uid="c1385932-e8b5-481e-a999-f716359f8cf2",
         sequences=[
             AnimationSequence(
-                start=datetime(2021, 11, 14, 2, 0, 0),
+                start=datetime(2024, 11, 14, 2, 0, 0),
                 # Produce video with reasonable duration to explore different rendering options.
-                stop=datetime(2021, 11, 14, 4, 16, 36),
+                stop=datetime(2024, 11, 14, 4, 16, 36),
                 # Produce very short video.
                 # stop=datetime(2021, 11, 14, 2, 16, 36),
                 every="5min",
