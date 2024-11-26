@@ -8,15 +8,14 @@ README = open(os.path.join(here, "README.rst")).read()
 
 requires = [
     # Foundation
-    "munch>=2.3,<3",
+    "munch>=4",
     "docopt>=0.6,<1",
     "tqdm>=4,<5",
     "unidecode>=1,<2",
     "furl>=2,<3",
-    "dataclasses>=0.8,<1; python_version=='3.6'",
     # Grafana control and animation
     "where>=1,<2",
-    "marionette_driver>=3,<4",
+    "marionette_driver>=3.4,<4",
     "python-dateutil>=2.7,<3",
     "datetime-interval==0.2",
     "pytimeparse2>=1.4,<2",
@@ -38,12 +37,11 @@ setup(
     classifiers=[
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.7",
-        "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
+        "Programming Language :: Python :: 3.13",
         "License :: OSI Approved :: GNU Affero General Public License v3",
         "License :: OSI Approved :: European Union Public Licence 1.2 (EUPL 1.2)",
         "Development Status :: 4 - Beta",
@@ -71,7 +69,7 @@ setup(
     ],
     author="Andreas Motl",
     author_email="andreas.motl@panodata.org",
-    url="https://github.com/panodata/grafanimate",
+    url="https://github.com/grafana-toolbox/grafanimate",
     keywords="grafana animate animation automation time gif video",
     packages=find_packages(),
     include_package_data=True,

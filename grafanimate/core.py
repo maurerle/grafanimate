@@ -4,7 +4,6 @@
 import logging
 from pathlib import Path
 
-import pkg_resources
 from furl import furl
 from munch import Munch
 
@@ -76,7 +75,8 @@ def load_module(modname):
     if Path(modname).exists():
         module = import_module("<unknown>", modname)
     else:
-        module = pkg_resources.EntryPoint(None, modname).resolve()
+        import importlib
+        module = importlib.import_module(modname)
     return module
 
 
