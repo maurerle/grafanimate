@@ -339,43 +339,42 @@ class GrafanaStudioSrv {
       $(".leaflet-control-zoom").remove();
     }
 
-    // Collapse datetime into title.
-    if (this.hasHeaderLayout("collapse-datetime", "studio")) {
-      // Build title from original one plus start time.
-      var title = this.getDashboardTitle();
+    // Build title from original one plus start time.
+    var title = this.getDashboardTitle();
 
-      // Custom datetime format.
-      var infix = " at ";
-      var datetime_format = this.options["datetime-format"];
-      if (datetime_format) {
-        var timerange = this.getTime();
-        //log('timerange:', timerange);
-        var dtstart;
-        if (datetime_format == "human-date") {
-          infix = "";
-          dtstart = " on " + timerange.from.format("YYYY-MM-DD");
-        } else if (datetime_format == "human-time") {
-          infix = "";
-          dtstart = " at " + timerange.from.format("HH:mm:ss");
-        } else if (datetime_format == "human-datetime") {
-          // Datetime format naming is "on DATE at TIME".
-          // https://english.stackexchange.com/questions/182660/on-vs-at-with-date-and-time/182663#182663
-          infix = "";
-          dtstart =
-            " on " +
-            timerange.from.format("YYYY-MM-DD") +
-            " at " +
-            timerange.from.format("HH:mm:ss");
-        } else {
-          dtstart = timerange.from.format(datetime_format);
-        }
-        title += infix + dtstart;
-      } else if (this.timerange) {
-        var dtstart = this.timerange.from;
-        title += infix + dtstart;
+    // Custom datetime format.
+    var infix = " at ";
+    var datetime_format = this.options["datetime-format"];
+    if (datetime_format) {
+      var timerange = this.getTime();
+      //log('timerange:', timerange);
+      var dtstart;
+      if (datetime_format == "human-date") {
+        infix = "";
+        dtstart = " on " + timerange.from.format("YYYY-MM-DD");
+      } else if (datetime_format == "human-time") {
+        infix = "";
+        dtstart = " at " + timerange.from.format("HH:mm:ss");
+      } else if (datetime_format == "human-datetime") {
+        // Datetime format naming is "on DATE at TIME".
+        // https://english.stackexchange.com/questions/182660/on-vs-at-with-date-and-time/182663#182663
+        infix = "";
+        dtstart =
+          " on " +
+          timerange.from.format("YYYY-MM-DD") +
+          " at " +
+          timerange.from.format("HH:mm:ss");
+      } else {
+        dtstart = timerange.from.format(datetime_format);
       }
+      title += infix + dtstart;
+    } else {
+      var dtstart = this.getTime().from;
+      title += infix + dtstart;
+    }
 
-      $(".navbar-page-btn").text(title);
+    if (this.options["panel-id"] != undefined){
+      $("h2").text(title)
     }
 
     // Add attribution content.

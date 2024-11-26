@@ -75,6 +75,10 @@ class SequentialAnimation:
         if self.options["exposure-time"] > 0:
             logger.info("Waiting for {} seconds (exposure time)".format(self.options["exposure-time"]))
             time.sleep(self.options["exposure-time"])
+        
+        if self.options["panel-id"]:
+            logger.debug("Updating Panel Label")
+            self.grafana.update_tags()
         if not self.dry_run:
             return self.make_image()
 

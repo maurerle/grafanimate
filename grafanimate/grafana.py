@@ -100,6 +100,9 @@ class GrafanaWrapper(FirefoxMarionetteBase):
     def clear_all_data_received(self):
         return self.calljs("grafanaStudio.hasAllData", False)
 
+    def update_tags(self):
+        return self.calljs("grafanaStudio.improvePanelChrome")
+
     def timewarp(self, frame: AnimationFrame, dry_run: bool = False):
         """
         Navigate the Dashboard to the designated point in time
