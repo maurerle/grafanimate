@@ -127,3 +127,28 @@ def monitor_market():
             ),
         ],
     )
+
+
+def price_map():
+    """
+    Run demo on `localhost`.
+
+    Synopsis::
+
+        grafanimate --scenario=demo.py:price_map --output=./animations --exposure-time=3 --dashboard-view="d-solo" --panel-id=panel-27
+    """
+    logger.info("Running scenario playdemo")
+
+    return AnimationScenario(
+        grafana_url="https://grafana.nowum.fh-aachen.de/",
+        dashboard_uid="FEg9kde7z",
+        #panel_id="panel-3",
+        sequences=[
+            AnimationSequence(
+                start=datetime(2024, 11,1),
+                stop=datetime(2024, 11, 7),
+                every="1h",
+                mode=SequencingMode.WINDOW,
+            ),
+        ],
+    )
